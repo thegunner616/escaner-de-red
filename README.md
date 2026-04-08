@@ -26,7 +26,9 @@ archivo de texto.
 
 ## Advertencia:
 -Este programa debe usarse únicamente con fines educativos
+
 -El escaneo de puertos sin autorización puede ser ilegal en algunas jurisdicciones.
+
 -Usa con responsabilidad y solo en redes donde tengas permiso.
 
 ## Capturas de pantalla
