@@ -5,7 +5,8 @@ from tkinter import ttk, scrolledtext, filedialog, messagebox
 from threading import Thread
 import os
 import sys
-
+from PIL import Image, ImageTk
+import platform 
 
 class EscanerRedApp:
     def __init__(self, root):
@@ -51,15 +52,34 @@ class EscanerRedApp:
         self.entrada_target.grid(row=0, column=1, padx=5)
         self.entrada_target.insert(0, self.ip_local)
 
-        estilo_btn = {"fg": self.color_texto, "bg": self.color_boton, "activebackground": "#005500", "font": ("Courier New", 9, "bold"), "cursor": "hand2", "bd": 2, "relief": "raised"}
+        estilo_btn = {
+            "fg": self.color_texto,
+            "bg": self.color_boton,
+            "activebackground": "#005500",
+            "font": ("Courier New", 9, "bold"),
+            "cursor": "hand2",
+            "bd": 2,
+            "relief": "raised"
+        }
         
         tk.Button(marco, text="PING A HOST", command=self.iniciar_ping_unico, **estilo_btn).grid(row=0, column=2, padx=4)
         tk.Button(marco, text="ESCANEAR REDES", command=self.iniciar_escaneo_red, **estilo_btn).grid(row=0, column=3, padx=4)
         tk.Button(marco, text="ESCANEAR PUERTOS", command=self.iniciar_puertos, **estilo_btn).grid(row=0, column=4, padx=4)
         tk.Button(marco, text="GUARDAR LOG", command=self.guardar_resultados, **estilo_btn).grid(row=0, column=5, padx=4)
 
+        # --- BOTÓN NUEVO ---
+        tk.Button(marco, text="VER SISTEMA", command=self.mostrar_sistema, **estilo_btn).grid(row=0, column=6, padx=4)
+
         # --- CONSOLA ---
-        self.txt_resultados = scrolledtext.ScrolledText(self.root, width=90, height=30, bg="#050505", fg=self.color_texto, font=("Courier New", 10), bd=0)
+        self.txt_resultados = scrolledtext.ScrolledText(
+            self.root,
+            width=90,
+            height=30,
+            bg="#050505",
+            fg=self.color_texto,
+            font=("Courier New", 10),
+            bd=0
+        )
         self.txt_resultados.pack(padx=20, pady=15, fill="both", expand=True)
         
         self.escribir_log(f">> IP DETECTADA: {self.ip_local}")
@@ -72,7 +92,8 @@ class EscanerRedApp:
             ip = s.getsockname()[0]
             s.close()
             return ip
-        except: return "127.0.0.1"
+        except:
+            return "127.0.0.1"
 
     def escribir_log(self, mensaje):
         self.txt_results_config = self.txt_resultados
@@ -83,17 +104,34 @@ class EscanerRedApp:
 
     def guardar_resultados(self):
         contenido = self.txt_resultados.get("1.0", tk.END)
-        ruta = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Archivo de Texto", "*.txt")])
+        ruta = filedialog.asksaveasfilename(
+            defaultextension=".txt",
+            filetypes=[("Archivo de Texto", "*.txt")]
+        )
         if ruta:
-            with open(ruta, "w", encoding='utf-8') as f: f.write(contenido)
+            with open(ruta, "w", encoding='utf-8') as f:
+                f.write(contenido)
             self.escribir_log(f">> LOG GUARDADO EN: {ruta}")
 
-    # --- TAREAS CON PARCHE PARA NO ABRIR VENTANAS NEGRAS ---
+    # --- NUEVA FUNCIÓN ---
+    def mostrar_sistema(self):
+        sistema = platform.system()
+        version = platform.version()
+        arquitectura = platform.machine()
+        self.escribir_log(f">> SISTEMA OPERATIVO: {sistema}")
+        self.escribir_log(f">> VERSIÓN: {version}")
+        self.escribir_log(f">> ARQUITECTURA: {arquitectura}")
+
+    # --- TAREAS ---
     def tarea_ping_unico(self):
         obj = self.entrada_target.get()
         self.escribir_log(f">> HACIENDO PING A: {obj}...")
-        # PARCHE: creationflags=0x08000000 evita que se abra el CMD
-        res = subprocess.run(["ping", "-n", "4", obj], capture_output=True, text=True, creationflags=0x08000000)
+        res = subprocess.run(
+            ["ping", "-n", "4", obj],
+            capture_output=True,
+            text=True,
+            creationflags=0x08000000
+        )
         self.escribir_log(res.stdout)
 
     def tarea_escaneo_red(self):
@@ -102,8 +140,12 @@ class EscanerRedApp:
         encontrados = 0
         for i in range(1, 16):
             ip = f"{seg}{i}"
-            # PARCHE: creationflags=0x08000000 aquí también
-            res = subprocess.run(["ping", "-n", "1", "-w", "400", ip], capture_output=True, text=True, creationflags=0x08000000)
+            res = subprocess.run(
+                ["ping", "-n", "1", "-w", "400", ip],
+                capture_output=True,
+                text=True,
+                creationflags=0x08000000
+            )
             if "TTL=" in res.stdout:
                 encontrados += 1
                 self.escribir_log(f"[+] DISPOSITIVO: {ip}")
@@ -112,18 +154,31 @@ class EscanerRedApp:
     def tarea_puertos(self):
         obj = self.entrada_target.get()
         self.escribir_log(f">> ANALIZANDO PUERTOS: {obj}...")
-        puertos = {21:"FTP", 22:"SSH", 23:"TELNET", 80:"HTTP", 443:"HTTPS", 3389:"RDP"}
+        puertos = {
+            21: "FTP",
+            22: "SSH",
+            23: "TELNET",
+            80: "HTTP",
+            443: "HTTPS",
+            3389: "RDP"
+        }
         for p, svc in puertos.items():
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(1.0) # Aumentado para scanme.nmap.org
+            s.settimeout(1.0)
             if s.connect_ex((obj, p)) == 0:
                 self.escribir_log(f"[OK] PUERTO {p} ({svc}) ABIERTO")
             s.close()
         self.escribir_log(">> ANÁLISIS FINALIZADO.")
 
-    def iniciar_ping_unico(self): Thread(target=self.tarea_ping_unico, daemon=True).start()
-    def iniciar_escaneo_red(self): Thread(target=self.tarea_escaneo_red, daemon=True).start()
-    def iniciar_puertos(self): Thread(target=self.tarea_puertos, daemon=True).start()
+    def iniciar_ping_unico(self):
+        Thread(target=self.tarea_ping_unico, daemon=True).start()
+
+    def iniciar_escaneo_red(self):
+        Thread(target=self.tarea_escaneo_red, daemon=True).start()
+
+    def iniciar_puertos(self):
+        Thread(target=self.tarea_puertos, daemon=True).start()
+
 
 if __name__ == "__main__":
     ventana = tk.Tk()
