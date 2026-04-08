@@ -25,9 +25,9 @@ archivo de texto.
 
 
 ## Advertencia:
-Este programa debe usarse únicamente con fines educativos
-El escaneo de puertos sin autorización puede ser ilegal en algunas jurisdicciones.
-Usa con responsabilidad y solo en redes donde tengas permiso.
+-Este programa debe usarse únicamente con fines educativos
+-El escaneo de puertos sin autorización puede ser ilegal en algunas jurisdicciones.
+-Usa con responsabilidad y solo en redes donde tengas permiso.
 
 ## Capturas de pantalla
 [Captura 1]<img width="1915" height="1016" alt="Captura 1" src="https://github.com/user-attachments/assets/a8388fbc-65b5-41d2-9e09-78f0494f88a7" />
