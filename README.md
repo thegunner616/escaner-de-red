@@ -34,5 +34,7 @@ Este programa debe usarse únicamente con fines educativos
 
 [Captura 3]<img width="978" height="123" alt="Captura 3" src="https://github.com/user-attachments/assets/4b92ac96-f696-4669-b09f-56c6e85a54d0" />
 
+##Autores
+Daniel Videla, Vicente Vega y Nicolas Bastidas
 
 No debe utilizarse para realizar pruebas en redes sin autorización
