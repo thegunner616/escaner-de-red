@@ -25,7 +25,7 @@ class EscanerRedApp:
 
         # --- RUTA DE IMAGEN ---
         if getattr(sys, 'frozen', False):
-            ruta_base = os.path.dirname(sys.executable)
+            ruta_base = sys._MEIPASS
         else:
             ruta_base = os.path.dirname(os.path.abspath(__file__))
             
