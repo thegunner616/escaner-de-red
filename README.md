@@ -25,11 +25,8 @@ archivo de texto.
 
 
 ## Advertencia:
--Este programa debe usarse únicamente con fines educativos
-
--El escaneo de puertos sin autorización puede ser ilegal en algunas jurisdicciones.
-
--Usa con responsabilidad y solo en redes donde tengas permiso.
+- Este programa debe usarse únicamente con fines educativos
+- No debe utilizarse para realizar pruebas en redes sin autorización
 
 ## Capturas de pantalla
 [Captura 1]<img width="1915" height="1016" alt="Captura 1" src="https://github.com/user-attachments/assets/a8388fbc-65b5-41d2-9e09-78f0494f88a7" />
@@ -38,4 +35,10 @@ archivo de texto.
 
 [Captura 3]<img width="978" height="123" alt="Captura 3" src="https://github.com/user-attachments/assets/4b92ac96-f696-4669-b09f-56c6e85a54d0" />
 
-No debe utilizarse para realizar pruebas en redes sin autorización
+## Autores:
+- Vicente Vega
+- Daniel Videla
+- Nicolas Bastidas
+
+## Licencia
+Licencia MIT - Ver archivo LICENCIA para detalles.
