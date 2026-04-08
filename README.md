@@ -1,11 +1,38 @@
-Este es un programa hecho en Python que sirve para hacer pruebas básicas de red desde una interfaz gráfica simple. Permite ver si un host responde, buscar dispositivos conectados en la red local, revisar algunos puertos comunes y también mostrar el sistema operativo del equipo donde se ejecuta.
+## Descripción
+Este es un programa hecho en Python con una interfaz gráfica simple.
+Sirve para realizar pruebas básicas de red como: 
+- Verificar si un host responde (ping)
+- Detectar dispositivos en la red local
+- Revisar algunos puertos comunes
+- Mostrar el sistema operativo del equipo
 
-El programa funciona ingresando una dirección IP o un nombre de host y luego usando los botones disponibles para realizar distintas acciones. Los resultados se muestran en una consola dentro de la misma aplicación y también se pueden guardar en un archivo de texto.
 
-Para usarlo solo necesitas tener Python instalado y la librería Pillow. Después ejecutas el archivo principal y se abrirá la ventana del programa. Desde ahí puedes probar las distintas opciones según lo que necesites.
+## Requisitos:
+- Tener Python instalado
 
-Este proyecto usa herramientas básicas de Python como sockets, subprocess, tkinter y threading, por lo que está pensado más como una práctica o aprendizaje que como una herramienta profesional.
 
-El escaneo de red es limitado y solo revisa algunos dispositivos, y el escaneo de puertos también es básico, por lo que no reemplaza herramientas más avanzadas.
+## Uso:
+Ejecutar el .exe , el programa automaticamente detectara la ip de la cual se conectó ,
+seguido debera seleccionar los botones depende de la acción que queramos hacer , 
+existe la opción de detectar hosts, hacer ping , escanear puertos , y verificar desde 
+que sistema operativo estamos trabajando , toda esa información la podemos guardar en un 
+archivo de texto.
 
-Este programa debe usarse únicamente con fines educativos y no para realizar pruebas en redes sin autorización.
+
+## Propósito:
+- Este proyecto está pensado como práctica y aprendizaje
+- No está diseñado para uso profesional
+
+
+## Advertencia:
+Este programa debe usarse únicamente con fines educativos
+
+## Capturas de pantalla
+[Captura 1]<img width="1915" height="1016" alt="Captura 1" src="https://github.com/user-attachments/assets/a8388fbc-65b5-41d2-9e09-78f0494f88a7" />
+
+[Captura 2]<img width="1917" height="682" alt="Captura 2" src="https://github.com/user-attachments/assets/d58a7e0f-d559-4e50-aebb-ef3f4298e645" />
+
+[Captura 3]<img width="978" height="123" alt="Captura 3" src="https://github.com/user-attachments/assets/4b92ac96-f696-4669-b09f-56c6e85a54d0" />
+
+
+No debe utilizarse para realizar pruebas en redes sin autorización
