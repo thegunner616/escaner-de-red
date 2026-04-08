@@ -1,5 +1,47 @@
-__pycache__/
-*.pyc
-.env
+# 🔹 Archivos compilados de Python
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# 🔹 Entornos virtuales
+
 venv/
+env/
+ENV/
+.venv/
+
+# 🔹 Archivos de configuración del sistema
+
+.DS_Store
+Thumbs.db
+
+# 🔹 Archivos de IDE (VSCode, PyCharm, etc.)
+
+.vscode/
+.idea/
+
+# 🔹 Logs y archivos generados
+
 *.log
+*.txt
+
+# 🔹 Archivos temporales
+
+*.tmp
+*.bak
+
+# 🔹 Archivos de empaquetado (PyInstaller, etc.)
+
+build/
+dist/
+*.spec
+
+# 🔹 Archivos de claves o sensibles
+
+*.pem
+*.ppk
+
+# 🔹 Base de datos o archivos locales (por si agregas en el futuro)
+
+*.db
